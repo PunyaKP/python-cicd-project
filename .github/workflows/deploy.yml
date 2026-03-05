@@ -6,7 +6,8 @@ on:
       - main
 
 jobs:
-  build:
+
+  ci:
     runs-on: ubuntu-latest
 
     steps:
@@ -20,3 +21,11 @@ jobs:
 
       - name: Install dependencies
         run: pip install -r requirements.txt
+
+  cd:
+    needs: ci
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to EC2
+        run: echo "Deploying to AWS EC2 server"
